@@ -1,0 +1,844 @@
+﻿@font-face {
+    font-family: exo-2-regular;
+    src: url(../font/exo-2/Exo2-Regular.ttf) format('truetype');
+}
+
+@font-face {
+    font-family: exo-2-bold;
+    src: url(../font/exo-2/Exo2-Bold.ttf) format('truetype');
+}
+
+@font-face {
+    font-family: exo-2-italic;
+    src: url(../font/exo-2/Exo2-Italic.ttf) format('truetype');
+}
+
+@font-face {
+    font-family: exo-2-bold-italic;
+    src: url(../font/exo-2/Exo2-BoldItalic.ttf) format('truetype');
+}
+
+body {
+    font-family: exo-2-regular;
+    background-repeat: repeat;
+    background-color: rgba(42, 42, 42, 1.0);
+    color: whitesmoke;
+}
+
+.header-title {
+    font-family: exo-2-bold;
+    padding-left: 10px;
+    padding-bottom: 10px;
+    background: black;
+    color: skyblue;
+}
+
+.toolbar {
+    margin-top: -10px; 
+    background-color: white;
+    height: 35px;
+}
+
+.image-button-container {
+    margin: 2px;
+    width: 30px;
+    height: 30px;
+    border-radius: 10px;
+    display: inline-block;
+}
+
+    .image-button-container:hover {
+        background-color: rgba(135,206,235,0.5)
+        
+    }
+
+    .image-button-container:active {
+        background-color: rgba(135,206,255,0.8)
+    }
+
+.image-button-image {
+    margin: 5px;
+}
+
+.slew-control-container {
+    margin-top: 10px;
+    width: 332px;
+    height: 332px;
+    background: url(../images/Controls/SlewControllerBackground.png);
+    position: relative;
+}
+
+.slew-button-base-inactive {
+    width: 120px;
+    height: 120px;
+    background: url(../images/Controls/SlewButton.png);
+    background-size: 120px 120px;
+}
+
+.slew-button-base {
+    width: 120px;
+    height: 120px;
+    background: url(../images/Controls/SlewButton-LowLight.png);
+    background-size: 120px 120px;
+}
+
+.slew-button-base:active {
+    width: 120px;
+    height: 120px;
+    background: url(../images/Controls/SlewButton-HighLight.png);
+    background-size: 120px 120px;
+}
+
+
+.slew-up {
+    position: absolute;
+    top: 26px;
+    left: 106px;
+    transform: rotate(0deg);
+}
+
+.slew-right {
+    position: absolute;
+    top: 106px;
+    left: 195px;
+    transform: rotate(90deg);
+}
+
+.slew-down {
+    position: absolute;
+    top: 185px;
+    left: 106px;
+    transform: rotate(180deg);
+}
+
+.slew-left {
+    position: absolute;
+    top: 106px;
+    left: 27px;
+    transform: rotate(270deg);
+}
+
+.slew-click-area {
+    margin-top: 5px;
+    margin-left: 30px;
+    width: 60px;
+    height: 100px;
+    cursor: pointer;
+}
+
+.control-container {
+    vertical-align: top;
+    display: inline-block;
+    margin: 10px;
+    border: 1px solid whitesmoke;
+    border-radius: 10px;
+    padding: 10px;
+}
+
+.slew-speed-container {
+    margin-top: 10px;
+    width: 220px;
+    height: 220px;
+}
+
+.toggle-button-base-inactive {
+    width: 70px;
+    height: 70px;
+    display: inline-block;
+    background-image: url(../images/Controls/ToggleButtonBackground.png), url(../images/Controls/ToggleButton.png);
+    background-position: 0px 0px, 3px 3px;
+    z-index: 10;
+    cursor: pointer;
+}
+
+.toggle-button-base {
+    width: 70px;
+    height: 70px;
+    display: inline-block;
+    background-image: url(../images/Controls/ToggleButtonBackground.png), url(../images/Controls/ToggleButton-LowLight.png);
+    background-position: 0px 0px, 3px 3px;
+    z-index: 10;
+    cursor: pointer;
+}
+
+.slew-button-1 {
+    background-image: url(../images/Controls/One.png);
+    z-index: 1;
+}
+
+.slew-button-2 {
+    background-image: url(../images/Controls/Two.png);
+    z-index: 10;
+}
+
+.slew-button-3 {
+    background-image: url(../images/Controls/Three.png);
+    z-index: 10;
+}
+
+.slew-button-4 {
+    background-image: url(../images/Controls/Four.png);
+    z-index: 10;
+}
+
+.slew-button-5 {
+    background-image: url(../images/Controls/Five.png);
+    z-index: 10;
+}
+
+.slew-button-6 {
+    background-image: url(../images/Controls/Six.png);
+    z-index: 10;
+}
+
+.slew-button-7 {
+    background-image: url(../images/Controls/Seven.png);
+    z-index: 10;
+}
+
+.slew-button-8 {
+    background-image: url(../images/Controls/Eight.png);
+    z-index: 10;
+}
+
+.slew-button-9 {
+    background-image: url(../images/Controls/Nine.png);
+    z-index: 10;
+}
+
+.tracking-mode-container {
+    margin-top: 10px;
+    width: 260px;
+    height: 130px;
+}
+
+.big-toggle-button-base-inactive {
+    width: 128px;
+    height: 64px;
+    display: inline-block;
+    background-image: url(../images/Controls/BigToggleButtonBackground.png), url(../images/Controls/BigToggleButton.png);
+    background-position: 0px 0px, 0px 0px;
+    z-index: 10;
+    cursor: pointer;
+}
+
+.big-toggle-button-base {
+    width: 128px;
+    height: 64px;
+    display: inline-block;
+    background-image: url(../images/Controls/BigToggleButtonBackground.png), url(../images/Controls/BigToggleButton-LowLight.png);
+    background-position: 0px 0px, 0px 0px;
+    z-index: 10;
+    cursor: pointer;
+}
+
+.big-toggle-button-option {
+    width: 128px;
+    height: 64px;
+    display: block;
+    margin: auto;
+}
+
+.step-mode-container {
+    margin-top: 10px;
+    width: 292px;
+    height: 70px;
+}
+
+.toggle-button-option {
+    width: 64px;
+    height: 64px;
+    display: block;
+    margin: auto;
+}
+
+.step-count-container {
+    margin-top: 10px;
+    width: 292px;
+    height: 220px;
+}
+
+.custom-step-count-input {
+    margin: -50px 0 10px 10px;
+    width: 200px;
+    vertical-align: middle;
+}
+
+.focuser-direction-container {
+    margin-top: 10px;
+    width: 332px;
+    height: 360px;
+    background-image: url(../images/Controls/FocuserDirectionBackground.png);
+    background-position: 5px 0px;
+    background-repeat: no-repeat;
+    background-size: 320px;
+    position: relative;
+}
+
+.giant-toggle-button-base-inactive {
+    width: 250px;
+    height: 120px;
+    display: inline-block;
+    background-image: url(../images/Controls/GiantButtonBackground.png);
+    background-position: 0px 0px;
+    z-index: 10;
+    cursor: pointer;
+}
+
+.giant-toggle-button-base {
+    width: 250px;
+    height: 120px;
+    display: inline-block;
+    background-image: url(../images/Controls/GiantButton-LowLight.png);
+    background-position: 0px 0px;
+    z-index: 10;
+    cursor: pointer;
+}
+
+.focuser-pushout {
+    position: absolute;
+    top: 25px;
+    left: 40px;
+}
+
+.focuser-pullin {
+    position: absolute;
+    top: 210px;
+    left: 40px;
+}
+
+.giant-toggle-button-option {
+    width: 250px;
+    height: 120px;
+    display: block;
+    margin: auto;
+}
+
+.display-container {
+    width: 350px;
+    height: 80px;
+    margin-top: 10px;
+    background-image: url(../images/SegmentDisplay/SegmentDisplayBackground.png);
+    background-position: 0px 0px;
+    background-repeat: no-repeat;
+    background-size: 350px 80px;
+    position: relative;
+}
+
+
+.digit-place-eight {
+    position: absolute;
+    top: 8px;
+    left: 294px;
+    width: 36px;
+    height: 63px;
+}
+
+.digit-place-seven {
+    position: absolute;
+    top: 8px;
+    left: 258px;
+    width: 36px;
+    height: 63px;
+}
+
+.digit-place-six {
+    position: absolute;
+    top: 8px;
+    left: 222px;
+    width: 36px;
+    height: 63px;
+}
+
+.digit-place-five {
+    position: absolute;
+    top: 8px;
+    left: 186px;
+    width: 36px;
+    height: 63px;
+}
+
+.digit-place-four {
+    position: absolute;
+    top: 8px;
+    left: 150px;
+    width: 36px;
+    height: 63px;
+}
+
+.digit-place-three {
+    position: absolute;
+    top: 8px;
+    left: 114px;
+    width: 36px;
+    height: 63px;
+}
+
+.digit-place-two {
+    position: absolute;
+    top: 8px;
+    left: 78px;
+    width: 36px;
+    height: 63px;
+}
+
+.digit-place-one {
+    position: absolute;
+    top: 8px;
+    left: 42px;
+    width: 36px;
+    height: 63px;
+}
+
+.digit-place-zero {
+    position: absolute;
+    top: 8px;
+    left: 6px;
+    width: 36px;
+    height: 63px;
+}
+
+.digit-null {
+
+}
+
+.digit-zero {
+    background-image: url(../images/SegmentDisplay/Zero.png);
+}
+
+.digit-one {
+    background-image: url(../images/SegmentDisplay/One.png);
+}
+
+.digit-two {
+    background-image: url(../images/SegmentDisplay/Two.png);
+}
+
+.digit-three {
+    background-image: url(../images/SegmentDisplay/Three.png);
+}
+
+.digit-four {
+    background-image: url(../images/SegmentDisplay/Four.png);
+}
+
+.digit-five {
+    background-image: url(../images/SegmentDisplay/Five.png);
+}
+
+.digit-six {
+    background-image: url(../images/SegmentDisplay/Six.png);
+}
+
+.digit-seven {
+    background-image: url(../images/SegmentDisplay/Seven.png);
+}
+
+.digit-eight {
+    background-image: url(../images/SegmentDisplay/Eight.png);
+}
+
+.digit-nine {
+    background-image: url(../images/SegmentDisplay/Nine.png);
+}
+
+.digit-e {
+    background-image: url(../images/SegmentDisplay/E.png);
+}
+
+.digit-n {
+    background-image: url(../images/SegmentDisplay/N.png);
+}
+
+.digit-w {
+    background-image: url(../images/SegmentDisplay/W.png);
+}
+
+.digit-s {
+    background-image: url(../images/SegmentDisplay/S.png);
+}
+
+.digit-r {
+    background-image: url(../images/SegmentDisplay/R.png);
+}
+
+.digit-forward-slash {
+    background-image: url(../images/SegmentDisplay/ForwardSlash.png);
+}
+
+.digit-negation {
+    background-image: url(../images/SegmentDisplay/Negation.png);
+}
+
+.symbol-place-eight {
+    position: absolute;
+    top: 8px;
+    left: 303px;
+    width: 36px;
+    height: 63px;
+}
+
+.symbol-place-seven {
+    position: absolute;
+    top: 8px;
+    left: 265px;
+    width: 36px;
+    height: 63px;
+}
+
+.symbol-place-six {
+    position: absolute;
+    top: 8px;
+    left: 231px;
+    width: 36px;
+    height: 63px;
+}
+
+.symbol-place-five {
+    position: absolute;
+    top: 8px;
+    left: 195px;
+    width: 36px;
+    height: 63px;
+}
+
+.symbol-place-four {
+    position: absolute;
+    top: 8px;
+    left: 159px;
+    width: 36px;
+    height: 63px;
+}
+
+.symbol-place-three {
+    position: absolute;
+    top: 8px;
+    left: 123px;
+    width: 36px;
+    height: 63px;
+}
+
+.symbol-place-two {
+    position: absolute;
+    top: 8px;
+    left: 87px;
+    width: 36px;
+    height: 63px;
+}
+
+.symbol-place-one {
+    position: absolute;
+    top: 8px;
+    left: 51px;
+    width: 36px;
+    height: 63px;
+}
+
+.symbol-place-zero {
+    position: absolute;
+    top: 8px;
+    left: 15px;
+    width: 36px;
+    height: 63px;
+}
+
+.symbol-dot {
+    background-image: url(../images/SegmentDisplay/Dot.png);
+}
+
+.symbol-colon {
+    background-image: url(../images/SegmentDisplay/Colon.png);
+}
+
+.symbol-degree {
+    background-image: url(../images/SegmentDisplay/Degree.png);
+}
+
+.symbol-minutes {
+    background-image: url(../images/SegmentDisplay/Minutes.png);
+}
+
+.symbol-seconds {
+    background-image: url(../images/SegmentDisplay/Seconds.png);
+}
+
+.mini-display-container {
+    width: 175px;
+    height: 40px;
+    background-image: url(../images/SegmentDisplay/SegmentDisplayBackground.png);
+    background-position: 0px 0px;
+    background-repeat: no-repeat;
+    background-size: 175px 40px;
+    position: relative;
+    display: inline-block;
+}
+
+.mini-digit-place-eight {
+    position: absolute;
+    top: 4px;
+    left: 147px;
+    width: 18px;
+    height: 32px;
+}
+
+.mini-digit-place-seven {
+    position: absolute;
+    top: 4px;
+    left: 129px;
+    width: 18px;
+    height: 32px;
+}
+
+.mini-digit-place-six {
+    position: absolute;
+    top: 4px;
+    left: 111px;
+    width: 18px;
+    height: 32px;
+}
+
+.mini-digit-place-five {
+    position: absolute;
+    top: 4px;
+    left: 93px;
+    width: 18px;
+    height: 32px;
+}
+
+.mini-digit-place-four {
+    position: absolute;
+    top: 4px;
+    left: 75px;
+    width: 18px;
+    height: 32px;
+}
+
+.mini-digit-place-three {
+    position: absolute;
+    top: 4px;
+    left: 57px;
+    width: 18px;
+    height: 32px;
+}
+
+.mini-digit-place-two {
+    position: absolute;
+    top: 4px;
+    left: 39px;
+    width: 18px;
+    height: 32px;
+}
+
+.mini-digit-place-one {
+    position: absolute;
+    top: 4px;
+    left: 21px;
+    width: 18px;
+    height: 32px;
+}
+
+.mini-digit-place-zero {
+    position: absolute;
+    top: 4px;
+    left: 3px;
+    width: 18px;
+    height: 32px;
+}
+
+.mini-digit-zero {
+    background-image: url(../images/SegmentDisplay/Zero.png);
+    background-size: 18px 32px;
+}
+
+.mini-digit-one {
+    background-image: url(../images/SegmentDisplay/One.png);
+    background-size: 18px 32px;
+}
+
+.mini-digit-two {
+    background-image: url(../images/SegmentDisplay/Two.png);
+    background-size: 18px 32px;
+}
+
+.mini-digit-three {
+    background-image: url(../images/SegmentDisplay/Three.png);
+    background-size: 18px 32px;
+}
+
+.mini-digit-four {
+    background-image: url(../images/SegmentDisplay/Four.png);
+    background-size: 18px 32px;
+}
+
+.mini-digit-five {
+    background-image: url(../images/SegmentDisplay/Five.png);
+    background-size: 18px 32px;
+}
+
+.mini-digit-six {
+    background-image: url(../images/SegmentDisplay/Six.png);
+    background-size: 18px 32px;
+}
+
+.mini-digit-seven {
+    background-image: url(../images/SegmentDisplay/Seven.png);
+    background-size: 18px 32px;
+}
+
+.mini-digit-eight {
+    background-image: url(../images/SegmentDisplay/Eight.png);
+    background-size: 18px 32px;
+}
+
+.mini-digit-nine {
+    background-image: url(../images/SegmentDisplay/Nine.png);
+    background-size: 18px 32px;
+}
+
+.mini-digit-e {
+    background-image: url(../images/SegmentDisplay/E.png);
+    background-size: 18px 32px;
+}
+
+.mini-digit-n {
+    background-image: url(../images/SegmentDisplay/N.png);
+    background-size: 18px 32px;
+}
+
+.mini-digit-w {
+    background-image: url(../images/SegmentDisplay/W.png);
+    background-size: 18px 32px;
+}
+
+.mini-digit-s {
+    background-image: url(../images/SegmentDisplay/S.png);
+    background-size: 18px 32px;
+}
+
+.mini-digit-forward-r {
+    background-image: url(../images/SegmentDisplay/R.png);
+    background-size: 18px 32px;
+}
+
+.mini-digit-forward-slash {
+    background-image: url(../images/SegmentDisplay/ForwardSlash.png);
+    background-size: 18px 32px;
+}
+
+.mini-digit-negation {
+    background-image: url(../images/SegmentDisplay/Negation.png);
+    background-size: 18px 32px;
+}
+
+.mini-symbol-dot {
+    background-image: url(../images/SegmentDisplay/Dot.png);
+    background-size: 18px 32px;
+}
+
+.mini-symbol-colon {
+    background-image: url(../images/SegmentDisplay/Colon.png);
+    background-size: 18px 32px;
+}
+
+.mini-symbol-degree {
+    background-image: url(../images/SegmentDisplay/Degree.png);
+    background-size: 18px 32px;
+}
+
+.mini-symbol-minutes {
+    background-image: url(../images/SegmentDisplay/Minutes.png);
+    background-size: 18px 32px;
+}
+
+.mini-symbol-seconds {
+    background-image: url(../images/SegmentDisplay/Seconds.png);
+    background-size: 18px 32px;
+}
+
+.mini-symbol-place-eight {
+    position: absolute;
+    top: 3.5px;
+    left: 151.5px;
+    width: 18px;
+    height: 32px;
+}
+
+.mini-symbol-place-seven {
+    position: absolute;
+    top: 3.5px;
+    left: 133.5px;
+    width: 18px;
+    height: 32px;
+}
+
+.mini-symbol-place-six {
+    position: absolute;
+    top: 3.5px;
+    left: 115.5px;
+    width: 18px;
+    height: 32px;
+}
+
+.mini-symbol-place-five {
+    position: absolute;
+    top: 3.5px;
+    left: 97.5px;
+    width: 18px;
+    height: 32px;
+}
+
+.mini-symbol-place-four {
+    position: absolute;
+    top: 3.5px;
+    left: 79.5px;
+    width: 18px;
+    height: 32px;
+}
+
+.mini-symbol-place-three {
+    position: absolute;
+    top: 3.5px;
+    left: 61.5px;
+    width: 18px;
+    height: 32px;
+}
+
+.mini-symbol-place-two {
+    position: absolute;
+    top: 3.5px;
+    left: 43.5px;
+    width: 18px;
+    height: 32px;
+}
+
+.mini-symbol-place-one {
+    position: absolute;
+    top: 3.5px;
+    left: 25.5px;
+    width: 18px;
+    height: 32px;
+}
+
+.mini-symbol-place-zero {
+    position: absolute;
+    top: 3.5px;
+    left: 7.5px;
+    width: 18px;
+    height: 32px;
+}
+
+.location-container {
+    margin-top: 10px;
+}
+
+.toolbar-seperator {
+    height: 10px;
+    width: 1px;
+    color: gray;
+    margin: 3px 2px 0 2px;
+    display: inline-block;
+}
+
+div.modal {
+    color: black;
+}

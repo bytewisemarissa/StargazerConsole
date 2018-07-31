@@ -1,0 +1,443 @@
+﻿@using System.Web.Mvc.Html
+@using StargazerConsole.Extensions
+@model InterfaceViewModel
+
+@{
+    
+}
+@section HeaderIncludes
+{
+    <script type="text/javascript" src="js/StargazerConsoleInterface.js"></script>
+}
+<div class="toolbar">
+    @Html.ImageButton("refresh-button", "/images/Icons/Refresh_inverse_32x.png", "Refresh Connections", "RefreshConnections()", 20, 20)
+    <div class="toolbar-seperator">|</div>
+    @Html.ImageButton("telescope-serial-settings-button", "/images/Icons/SerialPort_64x.png", "Telescope Serial Port Settings", null, 20, 20, new Dictionary<string, string>(){ { "data-toggle", "modal" }, { "data-target", "#telescope-serial-settings-modal" } })
+    @Html.ImageButton("connect-telescope-button", "/images/Icons/Unplugged_16x.png", "Connect Telescope", "ConnectTelescope()", 20, 20)
+    @Html.ImageButton("sync-time-button", "/images/Icons/Time_64x.png", "Sync Time with Telescope", "SyncTime()", 20, 20, new Dictionary<string, string>() { { "data-toggle", "modal" }, { "data-target", "#telescope-time-settings-modal" } })
+    @Html.ImageButton("set-gps-button", "/images/Icons/Web_64x.png", "Set Telescope GPS Location", "SetGps()", 20, 20, new Dictionary<string, string>() { { "data-toggle", "modal" }, { "data-target", "#telescope-gps-settings-modal" } });
+    <div class="toolbar-seperator">|</div>
+    @Html.ImageButton("focuser-serial-settings-button", "/images/Icons/SerialPort_64x.png", "Focuser Serial Port Settings", "FocuserSettingsTelescope()", 20, 20, new Dictionary<string, string>() { { "data-toggle", "modal" }, { "data-target", "#focuser-serial-settings-modal" } })
+    @Html.ImageButton("connect-focuser-button", "/images/Icons/Unplugged_16x.png", "Connect Focuser", "ConnectFocuser()", 20, 20)
+</div>
+
+<div class="container-fluid">
+<div class="row">
+    <div class="col">
+        <div class="control-container">
+            <small>System Date</small>
+            <div id="system-date-display" class="display-container">
+                <div class="digit-place-zero digit-null"></div>
+                <div class="symbol-place-zero digit-null"></div>
+                <div class="digit-place-one digit-null"></div>
+                <div class="symbol-place-one digit-null"></div>
+                <div class="digit-place-two digit-null"></div>
+                <div class="symbol-place-two digit-null"></div>
+                <div class="digit-place-three digit-null"></div>
+                <div class="symbol-place-three digit-null"></div>
+                <div class="digit-place-four digit-null"></div>
+                <div class="symbol-place-four digit-null"></div>
+                <div class="digit-place-five digit-null"></div>
+                <div class="symbol-place-five digit-null"></div>
+                <div class="digit-place-six digit-null"></div>
+                <div class="symbol-place-six digit-null"></div>
+                <div class="digit-place-seven digit-null"></div>
+                <div class="symbol-place-seven digit-null"></div>
+                <div class="digit-place-eight digit-null"></div>
+                <div class="symbol-place-eight digit-null"></div>
+            </div>
+        </div>
+    </div>
+    <div class="col">
+        <div class="control-container">
+            <small>System Time</small>
+            <div id="system-time-display" class="display-container">
+                <div class="digit-place-zero digit-null"></div>
+                <div class="symbol-place-zero digit-null"></div>
+                <div class="digit-place-one digit-null"></div>
+                <div class="symbol-place-one digit-null"></div>
+                <div class="digit-place-two digit-null"></div>
+                <div class="symbol-place-two digit-null"></div>
+                <div class="digit-place-three digit-null"></div>
+                <div class="symbol-place-three digit-null"></div>
+                <div class="digit-place-four digit-null"></div>
+                <div class="symbol-place-four digit-null"></div>
+                <div class="digit-place-five digit-null"></div>
+                <div class="symbol-place-five digit-null"></div>
+                <div class="digit-place-six digit-null"></div>
+                <div class="symbol-place-six digit-null"></div>
+                <div class="digit-place-seven digit-null"></div>
+                <div class="symbol-place-seven digit-null"></div>
+                <div class="digit-place-eight digit-null"></div>
+                <div class="symbol-place-eight digit-null"></div>
+            </div>
+        </div>
+    </div>
+    <div class="col">
+        <div class="control-container">
+            <small>Telescope Date</small>
+            <div id="telescope-date-display" class="display-container">
+                <div class="digit-place-zero digit-null"></div>
+                <div class="symbol-place-zero digit-null"></div>
+                <div class="digit-place-one digit-null"></div>
+                <div class="symbol-place-one digit-null"></div>
+                <div class="digit-place-two digit-null"></div>
+                <div class="symbol-place-two digit-null"></div>
+                <div class="digit-place-three digit-null"></div>
+                <div class="symbol-place-three digit-null"></div>
+                <div class="digit-place-four digit-null"></div>
+                <div class="symbol-place-four digit-null"></div>
+                <div class="digit-place-five digit-null"></div>
+                <div class="symbol-place-five digit-null"></div>
+                <div class="digit-place-six digit-null"></div>
+                <div class="symbol-place-six digit-null"></div>
+                <div class="digit-place-seven digit-null"></div>
+                <div class="symbol-place-seven digit-null"></div>
+                <div class="digit-place-eight digit-null"></div>
+                <div class="symbol-place-eight digit-null"></div>
+            </div>
+        </div>
+    </div>
+    <div class="col">
+        <div class="control-container">
+            <small>Telescope Time</small>
+            <div id="telescope-time-display" class="display-container">
+                <div class="digit-place-zero digit-null"></div>
+                <div class="symbol-place-zero digit-null"></div>
+                <div class="digit-place-one digit-null"></div>
+                <div class="symbol-place-one digit-null"></div>
+                <div class="digit-place-two digit-null"></div>
+                <div class="symbol-place-two digit-null"></div>
+                <div class="digit-place-three digit-null"></div>
+                <div class="symbol-place-three digit-null"></div>
+                <div class="digit-place-four digit-null"></div>
+                <div class="symbol-place-four digit-null"></div>
+                <div class="digit-place-five digit-null"></div>
+                <div class="symbol-place-five digit-null"></div>
+                <div class="digit-place-six digit-null"></div>
+                <div class="symbol-place-six digit-null"></div>
+                <div class="digit-place-seven digit-null"></div>
+                <div class="symbol-place-seven digit-null"></div>
+                <div class="digit-place-eight digit-null"></div>
+                <div class="symbol-place-eight digit-null"></div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="col">
+        <div class="control-container">
+            <small>Latitude</small>
+            <div class="location-container">
+                <div id="latitude-degree-display" class="mini-display-container">
+                    <div class="mini-digit-place-zero digit-null"></div>
+                    <div class="mini-symbol-place-zero digit-null"></div>
+                    <div class="mini-digit-place-one digit-null"></div>
+                    <div class="mini-symbol-place-one digit-null"></div>
+                    <div class="mini-digit-place-two digit-null"></div>
+                    <div class="mini-symbol-place-two digit-null"></div>
+                    <div class="mini-digit-place-three digit-null"></div>
+                    <div class="mini-symbol-place-three digit-null"></div>
+                    <div class="mini-digit-place-four digit-null"></div>
+                    <div class="mini-symbol-place-four digit-null"></div>
+                    <div class="mini-digit-place-five digit-null"></div>
+                    <div class="mini-symbol-place-five digit-null"></div>
+                    <div class="mini-digit-place-six digit-null"></div>
+                    <div class="mini-symbol-place-six digit-null"></div>
+                    <div class="mini-digit-place-seven digit-null"></div>
+                    <div class="mini-symbol-place-seven digit-null"></div>
+                    <div class="mini-digit-place-eight digit-null"></div>
+                    <div class="mini-symbol-place-eight digit-null"></div>
+                </div>
+                <div id="latitude-minute-display" class="mini-display-container">
+                    <div class="mini-digit-place-zero digit-null"></div>
+                    <div class="mini-symbol-place-zero digit-null"></div>
+                    <div class="mini-digit-place-one digit-null"></div>
+                    <div class="mini-symbol-place-one digit-null"></div>
+                    <div class="mini-digit-place-two digit-null"></div>
+                    <div class="mini-symbol-place-two digit-null"></div>
+                    <div class="mini-digit-place-three digit-null"></div>
+                    <div class="mini-symbol-place-three digit-null"></div>
+                    <div class="mini-digit-place-four digit-null"></div>
+                    <div class="mini-symbol-place-four digit-null"></div>
+                    <div class="mini-digit-place-five digit-null"></div>
+                    <div class="mini-symbol-place-five digit-null"></div>
+                    <div class="mini-digit-place-six digit-null"></div>
+                    <div class="mini-symbol-place-six digit-null"></div>
+                    <div class="mini-digit-place-seven digit-null"></div>
+                    <div class="mini-symbol-place-seven digit-null"></div>
+                    <div class="mini-digit-place-eight digit-null"></div>
+                    <div class="mini-symbol-place-eight digit-null"></div>
+                </div>
+                <div id="latitude-second-display" class="mini-display-container">
+                    <div class="mini-digit-place-zero digit-null"></div>
+                    <div class="mini-symbol-place-zero digit-null"></div>
+                    <div class="mini-digit-place-one digit-null"></div>
+                    <div class="mini-symbol-place-one digit-null"></div>
+                    <div class="mini-digit-place-two digit-null"></div>
+                    <div class="mini-symbol-place-two digit-null"></div>
+                    <div class="mini-digit-place-three digit-null"></div>
+                    <div class="mini-symbol-place-three digit-null"></div>
+                    <div class="mini-digit-place-four digit-null"></div>
+                    <div class="mini-symbol-place-four digit-null"></div>
+                    <div class="mini-digit-place-five digit-null"></div>
+                    <div class="mini-symbol-place-five digit-null"></div>
+                    <div class="mini-digit-place-six digit-null"></div>
+                    <div class="mini-symbol-place-six digit-null"></div>
+                    <div class="mini-digit-place-seven digit-null"></div>
+                    <div class="mini-symbol-place-seven digit-null"></div>
+                    <div class="mini-digit-place-eight digit-null"></div>
+                    <div class="mini-symbol-place-eight digit-null"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col">
+        <div class="control-container">
+            <small>Longitude</small>
+            <div class="location-container">
+                <div id="longitude-degree-display" class="mini-display-container">
+                    <div class="mini-digit-place-zero digit-null"></div>
+                    <div class="mini-symbol-place-zero digit-null"></div>
+                    <div class="mini-digit-place-one digit-null"></div>
+                    <div class="mini-symbol-place-one digit-null"></div>
+                    <div class="mini-digit-place-two digit-null"></div>
+                    <div class="mini-symbol-place-two digit-null"></div>
+                    <div class="mini-digit-place-three digit-null"></div>
+                    <div class="mini-symbol-place-three digit-null"></div>
+                    <div class="mini-digit-place-four digit-null"></div>
+                    <div class="mini-symbol-place-four digit-null"></div>
+                    <div class="mini-digit-place-five digit-null"></div>
+                    <div class="mini-symbol-place-five digit-null"></div>
+                    <div class="mini-digit-place-six digit-null"></div>
+                    <div class="mini-symbol-place-six digit-null"></div>
+                    <div class="mini-digit-place-seven digit-null"></div>
+                    <div class="mini-symbol-place-seven digit-null"></div>
+                    <div class="mini-digit-place-eight digit-null"></div>
+                    <div class="mini-symbol-place-eight digit-null"></div>
+                </div>
+                <div id="longitude-minute-display" class="mini-display-container">
+                    <div class="mini-digit-place-zero digit-null"></div>
+                    <div class="mini-symbol-place-zero digit-null"></div>
+                    <div class="mini-digit-place-one digit-null"></div>
+                    <div class="mini-symbol-place-one digit-null"></div>
+                    <div class="mini-digit-place-two digit-null"></div>
+                    <div class="mini-symbol-place-two digit-null"></div>
+                    <div class="mini-digit-place-three digit-null"></div>
+                    <div class="mini-symbol-place-three digit-null"></div>
+                    <div class="mini-digit-place-four digit-null"></div>
+                    <div class="mini-symbol-place-four digit-null"></div>
+                    <div class="mini-digit-place-five digit-null"></div>
+                    <div class="mini-symbol-place-five digit-null"></div>
+                    <div class="mini-digit-place-six digit-null"></div>
+                    <div class="mini-symbol-place-six digit-null"></div>
+                    <div class="mini-digit-place-seven digit-null"></div>
+                    <div class="mini-symbol-place-seven digit-null"></div>
+                    <div class="mini-digit-place-eight digit-null"></div>
+                    <div class="mini-symbol-place-eight digit-null"></div>
+                </div>
+                <div id="longitude-second-display" class="mini-display-container">
+                    <div class="mini-digit-place-zero digit-null"></div>
+                    <div class="mini-symbol-place-zero digit-null"></div>
+                    <div class="mini-digit-place-one digit-null"></div>
+                    <div class="mini-symbol-place-one digit-null"></div>
+                    <div class="mini-digit-place-two digit-null"></div>
+                    <div class="mini-symbol-place-two digit-null"></div>
+                    <div class="mini-digit-place-three digit-null"></div>
+                    <div class="mini-symbol-place-three digit-null"></div>
+                    <div class="mini-digit-place-four digit-null"></div>
+                    <div class="mini-symbol-place-four digit-null"></div>
+                    <div class="mini-digit-place-five digit-null"></div>
+                    <div class="mini-symbol-place-five digit-null"></div>
+                    <div class="mini-digit-place-six digit-null"></div>
+                    <div class="mini-symbol-place-six digit-null"></div>
+                    <div class="mini-digit-place-seven digit-null"></div>
+                    <div class="mini-symbol-place-seven digit-null"></div>
+                    <div class="mini-digit-place-eight digit-null"></div>
+                    <div class="mini-symbol-place-eight digit-null"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="col">
+        <div class="control-container">
+            <small>Slew Direction</small>
+            <div class="slew-control-container">
+                <div id="slew-direction-up" class="slew-button-base-inactive slew-up">
+                    <div class="slew-click-area"
+                         onmousedown="SlewMouseDown('up')"
+                         onmouseup="SlewMouseUp('up')">
+                    </div>
+                </div>
+                <div id="slew-direction-down" class="slew-button-base-inactive slew-down">
+                    <div class="slew-click-area"
+                         onmousedown="SlewMouseDown('down')"
+                         onmouseup="SlewMouseUp('down')">
+                    </div>
+                </div>
+                <div id="slew-direction-left" class="slew-button-base-inactive slew-left">
+                    <div class="slew-click-area"
+                         onmousedown="SlewMouseDown('left')"
+                         onmouseup="SlewMouseUp('left')">
+                    </div>
+                </div>
+                <div id="slew-direction-right" class="slew-button-base-inactive slew-right">
+                    <div class="slew-click-area"
+                         onmousedown="SlewMouseDown('right')"
+                         onmouseup="SlewMouseUp('right')">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col">
+        <div class="control-container">
+            <small>Slew Speed</small>
+            <div class="slew-speed-container">
+                <div id="slew-speed-option-1" class="toggle-button-base-inactive"><img onclick="SlewSpeedChange(1)" src="/images/Controls/One.png" class="toggle-button-option"/></div>
+                <div id="slew-speed-option-2" class="toggle-button-base-inactive"><img onclick="SlewSpeedChange(2)" src="/images/Controls/Two.png" class="toggle-button-option"/></div>
+                <div id="slew-speed-option-3" class="toggle-button-base-inactive"><img onclick="SlewSpeedChange(3)" src="/images/Controls/Three.png" class="toggle-button-option"/></div>
+                <div id="slew-speed-option-4" class="toggle-button-base-inactive"><img onclick="SlewSpeedChange(4)" src="/images/Controls/Four.png" class="toggle-button-option"/></div>
+                <div id="slew-speed-option-5" class="toggle-button-base-inactive"><img onclick="SlewSpeedChange(5)" src="/images/Controls/Five.png" class="toggle-button-option"/></div>
+                <div id="slew-speed-option-6" class="toggle-button-base-inactive"><img onclick="SlewSpeedChange(6)" src="/images/Controls/Six.png" class="toggle-button-option"/></div>
+                <div id="slew-speed-option-7" class="toggle-button-base-inactive"><img onclick="SlewSpeedChange(7)" src="/images/Controls/Seven.png" class="toggle-button-option"/></div>
+                <div id="slew-speed-option-8" class="toggle-button-base-inactive"><img onclick="SlewSpeedChange(8)" src="/images/Controls/Eight.png" class="toggle-button-option"/></div>
+                <div id="slew-speed-option-9" class="toggle-button-base-inactive"><img onclick="SlewSpeedChange(9)" src="/images/Controls/Nine.png" class="toggle-button-option"/></div>
+            </div>
+        </div>
+        <div class="control-container">
+            <small>Tracking Mode</small>
+            <div class="tracking-mode-container">
+                <div id="tracking-mode-option-off" class="big-toggle-button-base-inactive"><img onclick="TrackingModeChange('off')" src="images/Controls/Off.png" class="big-toggle-button-option"/></div>
+                <div id="tracking-mode-option-altaz" class="big-toggle-button-base-inactive"><img onclick="TrackingModeChange('altaz')" src="images/Controls/AltAz.png" class="big-toggle-button-option"/></div>
+                <div id="tracking-mode-option-eqnorth" class="big-toggle-button-base-inactive"><img onclick="TrackingModeChange('eqnorth')" src="images/Controls/EqNorth.png" class="big-toggle-button-option"/></div>
+                <div id="tracking-mode-option-eqsouth" class="big-toggle-button-base-inactive"><img onclick="TrackingModeChange('eqsouth')" src="images/Controls/EqSouth.png" class="big-toggle-button-option"/></div>
+            </div>
+        </div>
+    </div>
+    <div class="col">
+        <div class="control-container">
+            <small>Focuser Direction</small>
+            <div class="focuser-direction-container">
+                <div id="focuser-direction-pushout" class="giant-toggle-button-base-inactive focuser-pushout"><img onclick="FocuserDirection('push')" src="images/Controls/PushOut.png" class="giant-toggle-button-option"/></div>
+                <div id="focuser-direction-pullin" class="giant-toggle-button-base-inactive focuser-pullin"><img onclick="FocuserDirection('pull')" src="images/Controls/PullIn.png" class="giant-toggle-button-option"/></div>
+            </div>
+        </div>
+    </div>
+    <div class="col">
+        <div class="control-container">
+            <small>Focuser Step Mode</small>
+            <div class="step-mode-container">
+                <div id="focuser-step-mode-option-1" class="toggle-button-base-inactive"><img onclick="FocuserStepModeChange(1)" src="images/Controls/One.png" class="toggle-button-option"/></div>
+                <div id="focuser-step-mode-option-2" class="toggle-button-base-inactive"><img onclick="FocuserStepModeChange(2)" src="images/Controls/Half.png" class="toggle-button-option"/></div>
+                <div id="focuser-step-mode-option-4" class="toggle-button-base-inactive"><img onclick="FocuserStepModeChange(4)" src="images/Controls/Quarter.png" class="toggle-button-option"/></div>
+                <div id="focuser-step-mode-option-8" class="toggle-button-base-inactive"><img onclick="FocuserStepModeChange(8)" src="images/Controls/Eighth.png" class="toggle-button-option"/></div>
+            </div>
+        </div>
+        <div class="control-container">
+            <small>Focuser Step Count</small>
+            <div class="step-count-container">
+                <div id="focuser-step-count-option-1" class="toggle-button-base-inactive"><img onclick="FocuserStepCountChange(1)" src="images/Controls/One.png" class="toggle-button-option"/></div>
+                <div id="focuser-step-count-option-5" class="toggle-button-base-inactive"><img onclick="FocuserStepCountChange(5)" src="images/Controls/Five.png" class="toggle-button-option"/></div>
+                <div id="focuser-step-count-option-10" class="toggle-button-base-inactive"><img onclick="FocuserStepCountChange(10)" src="images/Controls/Ten.png" class="toggle-button-option"/></div>
+                <div id="focuser-step-count-option-50" class="toggle-button-base-inactive"><img onclick="FocuserStepCountChange(50)" src="images/Controls/FiftyHundred.png" class="toggle-button-option"/></div>
+                <div id="focuser-step-count-option-100" class="toggle-button-base-inactive"><img onclick="FocuserStepCountChange(100)" src="images/Controls/OneHundred.png" class="toggle-button-option"/></div>
+                <div id="focuser-step-count-option-200" class="toggle-button-base-inactive"><img onclick="FocuserStepCountChange(200)" src="images/Controls/TwoHundred.png" class="toggle-button-option"/></div>
+                <div id="focuser-step-count-option-300" class="toggle-button-base-inactive"><img onclick="FocuserStepCountChange(300)" src="images/Controls/ThreeHundred.png" class="toggle-button-option"/></div>
+                <div id="focuser-step-count-option-400" class="toggle-button-base-inactive"><img onclick="FocuserStepCountChange(400)" src="images/Controls/FourHundred.png" class="toggle-button-option"/></div>
+                <div id="focuser-step-count-option-custom" class="toggle-button-base-inactive"><img onclick="FocuserStepCountChange(-1)" src="images/Controls/Cust.png" class="toggle-button-option"/></div>
+                <input id="custom-step-count" type="text" class="custom-step-count-input" value="0"/>
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+
+<div class="modal" id="telescope-serial-settings-modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Telescope Serial Settings</h5>
+            </div>
+            <div class="modal-body">
+                @Html.BootstrapDropDownListFor(m => m.TelescopeSerialSettings.ParitySetting, Model.AllowedParities.Select(p => new SelectListItem() { Text = p.ToString(), Value = p.ToString() }).ToList(), false, "Sets the Serial Parity.")
+                @Html.BootstrapDropDownListFor(m => m.TelescopeSerialSettings.BaudRate, Model.AllowedStopBits.Select(p => new SelectListItem() { Text = p.ToString(), Value = p.ToString() }).ToList())
+                @Html.BootstrapTextBoxFor(m => m.TelescopeSerialSettings.BaudRate)
+                @Html.BootstrapTextBoxFor(m => m.TelescopeSerialSettings.ReadTimeoutMs)
+                @Html.BootstrapTextBoxFor(m => m.TelescopeSerialSettings.WriteTimeoutMs)
+                @Html.BootstrapCheckboxFor(m => m.TelescopeSerialSettings.IsRetryEnabled)
+                @Html.BootstrapTextBoxFor(m => m.TelescopeSerialSettings.MaxRetryCount)
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary">Save Changes</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal" id="telescope-time-settings-modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Telescope Time Settings</h5>
+            </div>
+            <div class="modal-body">
+                <button type="button" class="btn btn-primary">Sync Computer Time to Telescope</button>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal" id="telescope-gps-settings-modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Telescope GPS Settings</h5>
+            </div>
+            <div class="modal-body">
+                @Html.BootstrapTextBoxFor(m => m.TelescopeGpsData.DegreesLatitude)
+                @Html.BootstrapTextBoxFor(m => m.TelescopeGpsData.MinutesLatitude)
+                @Html.BootstrapTextBoxFor(m => m.TelescopeGpsData.SecondsLatitude)
+                @Html.BootstrapCheckboxFor(m => m.TelescopeGpsData.IsNorth)
+                @Html.BootstrapTextBoxFor(m => m.TelescopeGpsData.DegreesLatitude)
+                @Html.BootstrapTextBoxFor(m => m.TelescopeGpsData.MinutesLatitude)
+                @Html.BootstrapTextBoxFor(m => m.TelescopeGpsData.SecondsLatitude)
+                @Html.BootstrapCheckboxFor(m => m.TelescopeGpsData.IsWest)
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary">Save Changes</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal" id="focuser-serial-settings-modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Focuser Serial Settings</h5>
+            </div>
+            <div class="modal-body">
+                @Html.BootstrapDropDownListFor(m => m.FocuserSerialSettings.ParitySetting, Model.AllowedParities.Select(p => new SelectListItem() { Text = p.ToString(), Value = p.ToString() }).ToList(), false, "Sets the Serial Parity.")
+                @Html.BootstrapDropDownListFor(m => m.FocuserSerialSettings.BaudRate, Model.AllowedStopBits.Select(p => new SelectListItem() { Text = p.ToString(), Value = p.ToString() }).ToList())
+                @Html.BootstrapTextBoxFor(m => m.FocuserSerialSettings.BaudRate)
+                @Html.BootstrapTextBoxFor(m => m.FocuserSerialSettings.ReadTimeoutMs)
+                @Html.BootstrapTextBoxFor(m => m.FocuserSerialSettings.WriteTimeoutMs)
+                @Html.BootstrapCheckboxFor(m => m.FocuserSerialSettings.IsRetryEnabled)
+                @Html.BootstrapTextBoxFor(m => m.FocuserSerialSettings.MaxRetryCount)
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary">Save Changes</button>
+            </div>
+        </div>
+    </div>
+</div>
+
